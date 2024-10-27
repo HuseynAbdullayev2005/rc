@@ -3,45 +3,69 @@ const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
 const choose_you = document.querySelector(".choose_you");
 const choose_computer = document.querySelector(".choose_computer")
+let computerScore = 0;
+let youScore = 0;
 
 rock.addEventListener("click", function () {
 
-    const chooserock = document.createElement("p");
-    chooserock.innerText = "rock";
-    document.querySelector(".choose_you").appendChild(chooserock);
+    const chooserock = document.querySelector(".chooseYou")
+    chooserock.innerHTML = "rock";
 
-    const chooseComp = document.createElement("p");
-    chooseComp.innerText = compChoose();
-    document.querySelector(".choose_computer").appendChild(chooseComp);
-    rockpaperscissors(chooserock, chooseComp)
+    const chooseComputer = document.querySelector(".chooseComputer");
+    chooseComputer.innerText = compChoose();
+
+
+
+    rockvs(chooseComputer);
+    let scorecomp = document.querySelector(".scorecomp")
+    scorecomp.innerHTML = computerScore;
+
+    let scoreyou = document.querySelector(".scoreyou")
+    scoreyou.innerHTML = youScore;
+
+
+
 
 })
 
 
 paper.addEventListener("click", function () {
 
-    const choosepaper = document.createElement("p");
-    choosepaper.innerText = "paper";
-    document.querySelector(".choose_you").appendChild(choosepaper);
+    const choosepaper = document.querySelector(".chooseYou")
+    choosepaper.innerHTML = "paper";
 
-    const chooseComp = document.createElement("p");
-    chooseComp.innerText = compChoose();
-    document.querySelector(".choose_computer").appendChild(chooseComp);
-    rockpaperscissors(choosepaper, chooseComp)
+    const chooseComputer = document.querySelector(".chooseComputer");
+    chooseComputer.innerText = compChoose();
+
+
+
+
+
+    papervs(chooseComputer);
+    let scorecomp = document.querySelector(".scorecomp")
+    scorecomp.innerHTML = computerScore;
+
+    let scoreyou = document.querySelector(".scoreyou")
+    scoreyou.innerHTML = youScore;
 })
 
 scissors.addEventListener("click", function () {
 
-    const choosescissors = document.createElement("p");
-    choosescissors.innerText = "scissors";
-    document.querySelector(".choose_you").appendChild(choosescissors);
+    const choosescissors = document.querySelector(".chooseYou")
+    choosescissors.innerHTML = "scissors";
 
-    const chooseComp = document.createElement("p");
-    chooseComp.innerText = compChoose();
-    document.querySelector(".choose_computer").appendChild(chooseComp);
-    console.log(choosescissors,chooseComp);
-    rockpaperscissors(choosescissors, chooseComp)
 
+    const chooseComputer = document.querySelector(".chooseComputer");
+    chooseComputer.innerText = compChoose();
+
+
+
+    scissorsvs(chooseComputer);
+    let scorecomp = document.querySelector(".scorecomp")
+    scorecomp.innerHTML = computerScore;
+
+    let scoreyou = document.querySelector(".scoreyou")
+    scoreyou.innerHTML = youScore;
 })
 
 
@@ -50,14 +74,77 @@ function compChoose() {
     return arr[Math.floor(Math.random() * arr.length)];
 }
 
-function rockpaperscissors(choose1, choose2) {
-   if(choose1.innerText==="rock" && choose2.innerText==="rock"){
-    console.log("beraber");
 
-   }
+function rockvs(chooseComputer) {
+    if (chooseComputer.innerText === "rock") {
+        let draw = document.querySelector(".winorlose")
+        draw.innerHTML = "Draw"
+        draw.style.backgroundColor = "gray";
+        console.log("beraber");
+        
+
+    }
+    else if (chooseComputer.innerText === "paper") {
+        console.log("uduz");
+        computerScore++;
+     let lose = document.querySelector(".winorlose")
+     lose.innerHTML = "you lose"
+     lose.style.backgroundColor = "red"
+    }
+    else {
+        console.log("uddu");
+        youScore++;
+        let win = document.querySelector(".winorlose")
+        win.innerHTML = "You win"
+        win.style.backgroundColor = "green";
+    }
 }
 
+function papervs(chooseComputer) {
+    if (chooseComputer.innerText === "paper") {
+        console.log("draw");
+        let draw = document.querySelector(".winorlose")
+        draw.innerHTML = "Draw"
+        draw.style.backgroundColor = "gray";
+    }
+    else if (chooseComputer.innerText === "rock") {
+        console.log("uddu");
+        youScore++;
+        let win = document.querySelector(".winorlose")
+        win.innerHTML = "You win"
+        win.style.backgroundColor = "green";
+    }
+    else {
+        console.log("uduz");
+        computerScore++;
+        let lose = document.querySelector(".winorlose")
+        lose.innerHTML = "you lose"
+        lose.style.backgroundColor = "red"
+    }
+}
 
+function scissorsvs(chooseComputer) {
+    if (chooseComputer.innerText === "scissors") {
+        console.log("Draw");
+        let draw = document.querySelector(".winorlose")
+        draw.innerHTML = "Draw"
+        draw.style.backgroundColor = "gray";
+    }
+    else if (chooseComputer.innerText === "paper") {
+        console.log("uddu");
+        youScore++;
+        let win = document.querySelector(".winorlose")
+        win.innerHTML = "You win"
+        win.style.backgroundColor = "green";
+    }
+    else {
+        console.log("uduz");
+        computerScore++;
+        let lose = document.querySelector(".winorlose")
+        lose.innerHTML = "you lose"
+        lose.style.backgroundColor = "red"
+    }
+}
 
 
 
